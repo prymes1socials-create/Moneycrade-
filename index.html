@@ -2,182 +2,244 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoneyCrade Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MONEY CRADE</title>
+
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0f172a;
-    color:white;
+background:#0f172a;
+color:white;
 }
-.container{
-    width:100%;
-    max-width:400px;
-    margin:60px auto;
-    padding:20px;
-}
-.card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
-}
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-    border:none;
-    border-radius:5px;
-}
-button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:5px;
-    background:#2563eb;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-button:hover{
-    background:#1d4ed8;
-}
+
 .hidden{
-    display:none;
+display:none;
 }
-.dashboard{
-    padding:20px;
+
+.container{
+padding:20px;
+max-width:500px;
+margin:auto;
 }
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#334155;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:8px;
+background:#3b82f6;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+background:#1e293b;
+padding:15px;
+}
+
+.nav button{
+width:auto;
+padding:8px 12px;
+margin:0 5px;
+background:#334155;
+}
+
 .balance{
-    font-size:24px;
-    margin-bottom:20px;
+font-size:28px;
+font-weight:bold;
+margin-top:10px;
+color:#22c55e;
 }
-.menu button{
-    margin:8px 0;
+
+.demo{
+margin-top:10px;
+color:#f87171;
+font-size:14px;
 }
-.small{
-    font-size:12px;
-    opacity:0.7;
+
+.header{
+font-size:22px;
+font-weight:bold;
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="container">
+<div id="authPage" class="container">
+<h1 style="text-align:center;">MONEY CRADE</h1>
 <div class="card">
-<h2>MoneyCrade Login</h2>
-<input type="text" id="username" placeholder="Username">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
+<h3>Login / Register</h3>
+<input type="email" id="email" placeholder="Enter Email">
+<input type="text" id="username" placeholder="Enter Username">
+<input type="password" id="password" placeholder="Enter Password">
+<button onclick="register()">Register</button>
 <button onclick="login()">Login</button>
-<p class="small">Demo Only Version</p>
+<p class="demo">Demo only. No real accounts.</p>
 </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboardPage" class="hidden">
-<div class="dashboard">
-<h2 id="welcomeUser"></h2>
-<div class="balance">Balance: ₦500,000</div>
 
-<div class="menu">
-<button onclick="showPage('buyPage')">Buy Verification Code</button>
-<button onclick="showPage('programPage')">Program With Us</button>
-<button onclick="showPage('withdrawPage')">Withdraw Money</button>
+<div class="nav">
+<div id="welcomeUser"></div>
 <button onclick="logout()">Logout</button>
 </div>
-</div>
-</div>
 
-<!-- BUY CODE PAGE -->
-<div id="buyPage" class="hidden container">
+<div class="container">
+
+<div id="dashboardSection">
 <div class="card">
-<h3>Buy Verification Code</h3>
-<p>Select Code Level:</p>
-<button onclick="showPayment()">Buy Random Code</button>
-<button onclick="showPayment()">Buy VIP Code</button>
-<button onclick="showPayment()">Buy VVIP Code</button>
-<button onclick="backToDashboard()">Back</button>
-</div>
+<div class="header">Dashboard</div>
+<div class="balance">₦500,000</div>
+<p class="demo">Demo balance. Not real money.</p>
 </div>
 
-<!-- PAYMENT NOTICE -->
-<div id="paymentNotice" class="hidden container">
 <div class="card">
-<h3>Payment Required</h3>
-<p>You must complete payment before receiving code.</p>
-<p>Demo Account Details:</p>
-<p><strong>Account Name:</strong> Seth Jonah Kiddams</p>
-<p><strong>Account Number:</strong> 7084104417</p>
-<button onclick="backToDashboard()">Back</button>
+<button onclick="showSection('buySection')">Buy Code</button>
+<button onclick="showSection('programSection')">Program With Us</button>
+<button onclick="showSection('withdrawSection')">Withdraw</button>
 </div>
 </div>
 
-<!-- PROGRAM PAGE -->
-<div id="programPage" class="hidden container">
+<div id="buySection" class="hidden">
+<div class="card">
+<h3>Buy Code</h3>
+<p>Select an option below.</p>
+<button onclick="showPayment()">Random Code</button>
+<button onclick="showPayment()">VIP Code</button>
+<button onclick="showPayment()">VVIP Code</button>
+<button onclick="back()">Back</button>
+<p class="demo">Demo only. No real payment required.</p>
+</div>
+</div>
+
+<div id="programSection" class="hidden">
 <div class="card">
 <h3>Program With Us</h3>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="text" placeholder="Programming Skill">
-<input type="number" placeholder="Buy Coins (Demo)">
-<button>Submit</button>
-<button onclick="backToDashboard()">Back</button>
+<input placeholder="Full Name">
+<input placeholder="Phone Number">
+<input placeholder="Experience Level">
+<button onclick="submitProgram()">Submit</button>
+<button onclick="back()">Back</button>
+<p id="programMsg" class="demo"></p>
 </div>
 </div>
 
-<!-- WITHDRAW PAGE -->
-<div id="withdrawPage" class="hidden container">
+<div id="withdrawSection" class="hidden">
 <div class="card">
 <h3>Withdraw Funds</h3>
-<p>You must have a verification code before withdrawing.</p>
-<input type="text" placeholder="Enter Verification Code">
-<button>Verify</button>
-<button onclick="backToDashboard()">Back</button>
+<p>You must verify your account before withdrawal.</p>
+<input placeholder="Enter Verification Code">
+<button onclick="withdrawNotice()">Proceed</button>
+<button onclick="back()">Back</button>
+<p id="withdrawMsg" class="demo"></p>
+</div>
+</div>
+
 </div>
 </div>
 
 <script>
 
-function login(){
-    let username = document.getElementById("username").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+function register(){
+let email=document.getElementById("email").value;
+let username=document.getElementById("username").value;
+let password=document.getElementById("password").value;
 
-    if(username && email && password){
-        document.getElementById("loginPage").classList.add("hidden");
-        document.getElementById("dashboardPage").classList.remove("hidden");
-        document.getElementById("welcomeUser").innerText = "Welcome, " + username;
-    }else{
-        alert("Please fill all fields");
-    }
+if(email && username && password){
+localStorage.setItem("userEmail",email);
+localStorage.setItem("userName",username);
+localStorage.setItem("userPass",password);
+alert("Registered successfully (Demo)");
+}
+else{
+alert("Please fill all fields");
+}
+}
+
+function login(){
+let email=document.getElementById("email").value;
+let username=document.getElementById("username").value;
+let password=document.getElementById("password").value;
+
+if(email===localStorage.getItem("userEmail") &&
+username===localStorage.getItem("userName") &&
+password===localStorage.getItem("userPass")){
+document.getElementById("authPage").classList.add("hidden");
+document.getElementById("dashboardPage").classList.remove("hidden");
+document.getElementById("welcomeUser").innerText="Welcome, "+username;
+}
+else{
+alert("Invalid login details");
+}
 }
 
 function logout(){
-    location.reload();
+location.reload();
 }
 
-function showPage(page){
-    document.getElementById("dashboardPage").classList.add("hidden");
-    document.getElementById(page).classList.remove("hidden");
+function showSection(section){
+document.getElementById("dashboardSection").classList.add("hidden");
+document.getElementById("buySection").classList.add("hidden");
+document.getElementById("programSection").classList.add("hidden");
+document.getElementById("withdrawSection").classList.add("hidden");
+document.getElementById(section).classList.remove("hidden");
 }
 
-function backToDashboard(){
-    document.getElementById("buyPage").classList.add("hidden");
-    document.getElementById("programPage").classList.add("hidden");
-    document.getElementById("withdrawPage").classList.add("hidden");
-    document.getElementById("paymentNotice").classList.add("hidden");
-    document.getElementById("dashboardPage").classList.remove("hidden");
+function back(){
+document.getElementById("buySection").classList.add("hidden");
+document.getElementById("programSection").classList.add("hidden");
+document.getElementById("withdrawSection").classList.add("hidden");
+document.getElementById("dashboardSection").classList.remove("hidden");
 }
 
 function showPayment(){
-    document.getElementById("buyPage").classList.add("hidden");
-    document.getElementById("paymentNotice").classList.remove("hidden");
+alert("Demo only. No real payment required.");
+}
+
+function submitProgram(){
+document.getElementById("programMsg").innerText="Application submitted (Demo Only).";
+}
+
+function withdrawNotice(){
+document.getElementById("withdrawMsg").innerText="Withdrawal locked. Demo verification required.";
 }
 
 </script>
 
 </body>
-  </html>
+</html>
