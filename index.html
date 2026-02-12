@@ -1,134 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>MONEY CRADE</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>MoneyCrade Demo</title>
 <style>
-*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
-body{margin:0;background:#0b1220;color:#e5e7eb}
-.container{max-width:420px;margin:auto;padding:20px}
-.brand{text-align:center;font-size:28px;font-weight:700;color:#4f9cff;margin-bottom:20px}
-.card{background:#111a2e;padding:18px;border-radius:16px;margin-top:16px}
-input,button{width:100%;padding:14px;margin-top:12px;border-radius:12px;border:none;font-size:16px}
-input{background:#0b1220;color:white}
-button{background:#22c55e;font-weight:600;cursor:pointer}
-.secondary{background:#4f9cff}
-.danger{background:#ef4444}
-.balance{font-size:34px;font-weight:700;color:#22c55e}
-.hidden{display:none}
-.menu button{margin-top:10px}
-.small{font-size:13px;color:#9ca3af}
-hr{border:none;border-top:1px solid #1f2937;margin:12px 0}
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+.container{
+    width:100%;
+    max-width:400px;
+    margin:60px auto;
+    padding:20px;
+}
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#1d4ed8;
+}
+.hidden{
+    display:none;
+}
+.dashboard{
+    padding:20px;
+}
+.balance{
+    font-size:24px;
+    margin-bottom:20px;
+}
+.menu button{
+    margin:8px 0;
+}
+.small{
+    font-size:12px;
+    opacity:0.7;
+}
 </style>
 </head>
-
 <body>
 
-<!-- AUTH -->
-<div class="container" id="auth">
-  <div class="brand">MONEY CRADE</div>
-  <div class="card">
-    <input id="email" placeholder="Email address">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login / Register</button>
-    <p class="small">Demo digital platform</p>
-  </div>
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="container">
+<div class="card">
+<h2>MoneyCrade Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p class="small">Demo Only Version</p>
+</div>
 </div>
 
 <!-- DASHBOARD -->
-<div class="container hidden" id="dashboard">
-  <div class="brand">MONEY CRADE</div>
+<div id="dashboardPage" class="hidden">
+<div class="dashboard">
+<h2 id="welcomeUser"></h2>
+<div class="balance">Balance: ₦500,000</div>
 
-  <div class="card">
-    <div class="small">Account Balance</div>
-    <div class="balance">₦500,000</div>
-  </div>
-
-  <div class="card">
-    <strong>Account Name</strong><br>
-    Seth Jonah Kiddams<br><br>
-    <strong>Account Number</strong><br>
-    7084104417
-  </div>
-
-  <div class="card menu">
-    <button onclick="openPage('buyCode')">Buy Verification Code</button>
-    <button onclick="openPage('program')">Program With Us</button>
-    <button onclick="openPage('withdraw')">Withdraw Money</button>
-    <button class="danger" onclick="logout()">Logout</button>
-  </div>
+<div class="menu">
+<button onclick="showPage('buyPage')">Buy Verification Code</button>
+<button onclick="showPage('programPage')">Program With Us</button>
+<button onclick="showPage('withdrawPage')">Withdraw Money</button>
+<button onclick="logout()">Logout</button>
+</div>
+</div>
 </div>
 
-<!-- BUY CODE -->
-<div class="container hidden" id="buyCode">
-  <div class="brand">Buy Verification Code</div>
-  <div class="card">
-    <p class="small">Payment required before code delivery (Demo)</p>
-    <hr>
-    <button>Buy Random Code</button>
-    <button class="secondary">Buy VIP Code</button>
-    <button class="secondary">Buy VVIP Code</button>
-  </div>
-  <button class="secondary" onclick="back()">Back</button>
+<!-- BUY CODE PAGE -->
+<div id="buyPage" class="hidden container">
+<div class="card">
+<h3>Buy Verification Code</h3>
+<p>Select Code Level:</p>
+<button onclick="showPayment()">Buy Random Code</button>
+<button onclick="showPayment()">Buy VIP Code</button>
+<button onclick="showPayment()">Buy VVIP Code</button>
+<button onclick="backToDashboard()">Back</button>
+</div>
 </div>
 
-<!-- PROGRAM -->
-<div class="container hidden" id="program">
-  <div class="brand">Program With Us</div>
-  <div class="card">
-    <p class="small">You need coins to program with us</p>
-    <hr>
-    <button>Buy 100 Coins</button>
-    <button class="secondary">Buy 500 Coins</button>
-    <button class="secondary">Buy 1000 Coins</button>
-  </div>
-  <button class="secondary" onclick="back()">Back</button>
+<!-- PAYMENT NOTICE -->
+<div id="paymentNotice" class="hidden container">
+<div class="card">
+<h3>Payment Required</h3>
+<p>You must complete payment before receiving code.</p>
+<p>Demo Account Details:</p>
+<p><strong>Account Name:</strong> Seth Jonah Kiddams</p>
+<p><strong>Account Number:</strong> 7084104417</p>
+<button onclick="backToDashboard()">Back</button>
+</div>
 </div>
 
-<!-- WITHDRAW -->
-<div class="container hidden" id="withdraw">
-  <div class="brand">Withdraw Money</div>
-  <div class="card">
-    <p class="small">
-      Withdrawal requires a valid verification code.<br>
-      Please obtain a code before withdrawing.
-    </p>
-    <input placeholder="Enter verification code">
-    <button disabled>Withdraw (Disabled)</button>
-  </div>
-  <button class="secondary" onclick="back()">Back</button>
+<!-- PROGRAM PAGE -->
+<div id="programPage" class="hidden container">
+<div class="card">
+<h3>Program With Us</h3>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="text" placeholder="Programming Skill">
+<input type="number" placeholder="Buy Coins (Demo)">
+<button>Submit</button>
+<button onclick="backToDashboard()">Back</button>
+</div>
+</div>
+
+<!-- WITHDRAW PAGE -->
+<div id="withdrawPage" class="hidden container">
+<div class="card">
+<h3>Withdraw Funds</h3>
+<p>You must have a verification code before withdrawing.</p>
+<input type="text" placeholder="Enter Verification Code">
+<button>Verify</button>
+<button onclick="backToDashboard()">Back</button>
+</div>
 </div>
 
 <script>
+
 function login(){
-  if(!email.value||!password.value){alert("Enter email and password");return;}
-  localStorage.setItem("mc_user","logged");
-  auth.classList.add("hidden");
-  dashboard.classList.remove("hidden");
+    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(username && email && password){
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("dashboardPage").classList.remove("hidden");
+        document.getElementById("welcomeUser").innerText = "Welcome, " + username;
+    }else{
+        alert("Please fill all fields");
+    }
 }
 
 function logout(){
-  localStorage.removeItem("mc_user");
-  location.reload();
+    location.reload();
 }
 
-function openPage(id){
-  dashboard.classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
+function showPage(page){
+    document.getElementById("dashboardPage").classList.add("hidden");
+    document.getElementById(page).classList.remove("hidden");
 }
 
-function back(){
-  document.querySelectorAll(".container").forEach(c=>c.classList.add("hidden"));
-  dashboard.classList.remove("hidden");
+function backToDashboard(){
+    document.getElementById("buyPage").classList.add("hidden");
+    document.getElementById("programPage").classList.add("hidden");
+    document.getElementById("withdrawPage").classList.add("hidden");
+    document.getElementById("paymentNotice").classList.add("hidden");
+    document.getElementById("dashboardPage").classList.remove("hidden");
 }
 
-if(localStorage.getItem("mc_user")){
-  auth.classList.add("hidden");
-  dashboard.classList.remove("hidden");
+function showPayment(){
+    document.getElementById("buyPage").classList.add("hidden");
+    document.getElementById("paymentNotice").classList.remove("hidden");
 }
+
 </script>
 
 </body>
-</html>
+  </html>
