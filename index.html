@@ -1,32 +1,177 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlueNova Access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(-45deg,#0f172a,#1e3a8a,#2563eb,#0ea5e9);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+overflow:hidden;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* GLASS CARD */
+
+.login-card{
+width:520px;
+padding:60px 50px;
+border-radius:30px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
+box-shadow:0 50px 100px rgba(0,0,0,0.4);
+text-align:center;
+color:white;
+animation:fadeIn 1.5s ease forwards;
+opacity:0;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+/* BIG LOGO */
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:60px;
+font-weight:900;
+letter-spacing:4px;
+margin-bottom:15px;
+background:linear-gradient(90deg,#ffffff,#38bdf8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 30px rgba(56,189,248,0.7);
+}
+
+.tagline{
+font-size:20px;
+opacity:0.8;
+margin-bottom:40px;
+}
+
+/* INPUTS */
+
+input{
+width:100%;
+padding:18px;
+margin:15px 0;
+border-radius:14px;
+border:none;
+outline:none;
+font-size:18px;
+background:rgba(255,255,255,0.15);
+color:white;
+}
+
+input::placeholder{
+color:rgba(255,255,255,0.7);
+}
+
+/* BUTTON */
+
+button{
+width:100%;
+padding:18px;
+margin-top:25px;
+border:none;
+border-radius:14px;
+font-size:20px;
+font-weight:800;
+cursor:pointer;
+background:linear-gradient(90deg,#38bdf8,#2563eb);
+color:white;
+transition:0.4s;
+box-shadow:0 15px 30px rgba(37,99,235,0.6);
+}
+
+button:hover{
+transform:translateY(-4px);
+box-shadow:0 25px 50px rgba(37,99,235,0.9);
+}
+
+/* FLOATING PARTICLES */
+
+.circle{
+position:absolute;
+border-radius:50%;
+background:rgba(255,255,255,0.05);
+animation:float 20s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+.circle:nth-child(1){
+width:200px;
+height:200px;
+left:10%;
+bottom:-200px;
+}
+
+.circle:nth-child(2){
+width:150px;
+height:150px;
+right:15%;
+bottom:-150px;
+animation-duration:25s;
+}
+
+.circle:nth-child(3){
+width:100px;
+height:100px;
+left:40%;
+bottom:-100px;
+animation-duration:18s;
+}
+
+</style>
 </head>
+
 <body>
-<div class="container">
 
-<div class="winner-message">
-Wow 😲 you are a winner, this link is really sacred, now you can be able to win big for yourself
-</div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
 
-<h2>Secure Access Portal</h2>
+<div class="login-card">
+
+<div class="logo">BLUENOVA</div>
+<div class="tagline">Elite Member Secure Access</div>
 
 <input type="text" id="username" placeholder="Username">
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
-<button onclick="login()">Login</button>
+
+<button onclick="login()">ENTER PORTAL</button>
 
 </div>
-<div class="container">
-<h2>Secure Access Portal</h2>
-<input type="text" id="username" placeholder="Username">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
