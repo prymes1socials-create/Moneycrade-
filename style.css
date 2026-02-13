@@ -166,3 +166,50 @@ margin-bottom:20px;
 font-size:22px;
 opacity:0.9;
   }
+/* LOGIN PAGE STYLE */
+
+.login-bg{
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.login-container{
+text-align:center;
+background:white;
+padding:60px 50px;
+border-radius:25px;
+box-shadow:0 40px 80px rgba(0,0,0,0.3);
+width:520px;
+}
+
+.big-logo img{
+width:220px;
+margin-bottom:30px;
+}
+
+.main-title{
+font-size:42px;
+font-weight:800;
+color:#0f172a;
+margin-bottom:10px;
+}
+
+.sub-title{
+font-size:20px;
+color:#64748b;
+margin-bottom:30px;
+}
+
+.login-container input{
+font-size:20px;
+padding:18px;
+}
+
+.login-container button{
+font-size:20px;
+padding:18px;
+margin-top:20px;
+                            }
