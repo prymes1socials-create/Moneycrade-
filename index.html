@@ -1,49 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlueNova Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-
+login.html
+dashboard.html
+buy.html
+program.html
+program-success.html
+tools.html
+upgrade.html
+withdraw.html
+style.css
+script.js
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Inter,sans-serif;
+font-family:Inter, sans-serif;
 }
 
 body{
-background:#0f172a;
-color:#1e293b;
-overflow:hidden;
-}
-
-.page{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
 background:#f4f6f9;
-padding:40px;
-transform:translateX(100%);
-transition:transform 0.5s ease;
-overflow:auto;
+color:#1e293b;
 }
 
-.page.active{
-transform:translateX(0);
-}
-
-.center-box{
-max-width:450px;
+.container{
+max-width:500px;
 margin:100px auto;
 background:white;
 padding:35px;
 border-radius:12px;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
 }
 
 input{
@@ -63,12 +46,11 @@ background:#2563eb;
 color:white;
 font-weight:600;
 cursor:pointer;
-margin-top:10px;
 }
 
 .dashboard{
 display:flex;
-height:100%;
+min-height:100vh;
 }
 
 .sidebar{
@@ -85,15 +67,14 @@ margin-bottom:30px;
 .sidebar a{
 display:block;
 margin-bottom:18px;
-cursor:pointer;
 color:white;
 text-decoration:none;
+font-weight:500;
 }
 
 .main{
 flex:1;
 padding:40px;
-overflow:auto;
 }
 
 .card{
@@ -108,112 +89,6 @@ margin-bottom:20px;
 text-align:center;
 padding:80px;
 }
-
-</style>
-</head>
-<body>
-
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="page active">
-<div class="center-box">
-<h2>Secure Access Portal</h2>
-<input type="text" id="username" placeholder="Username">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
-</div>
-
-<!-- DASHBOARD PAGE -->
-<div id="dashboardPage" class="page">
-<div class="dashboard">
-
-<div class="sidebar">
-<h3>BlueNova</h3>
-<a onclick="showSection('overview')">Dashboard</a>
-<a onclick="showSection('buy')">Buy Code</a>
-<a onclick="showSection('program')">Program With Us</a>
-<a onclick="showSection('tools')">Innovation Tools</a>
-<a onclick="showSection('upgrade')">Upgrade Membership</a>
-<a onclick="showSection('withdraw')">Withdraw</a>
-<a onclick="logout()">Logout</a>
-</div>
-
-<div class="main">
-
-<h2 id="welcomeText"></h2>
-
-<div id="overviewSection">
-<div class="card">
-<h3>₦500,000</h3>
-<p>Innovation Credit Balance</p>
-</div>
-<div class="card">
-<p>Status: Active</p>
-</div>
-</div>
-
-<div id="buySection" style="display:none;">
-<div class="card">
-<h3>Enter Access Code</h3>
-<input type="text" placeholder="Enter Code">
-<button>Submit Code</button>
-</div>
-</div>
-
-<div id="programSection" style="display:none;">
-<div class="card">
-<h3>Program With Us</h3>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="text" placeholder="Project Idea">
-<button onclick="submitProgram()">Submit Application</button>
-</div>
-</div>
-
-<div id="programSuccess" style="display:none;" class="success">
-<h2>Application Submitted Successfully</h2>
-<p>Our review team will contact you.</p>
-</div>
-
-<div id="toolsSection" style="display:none;">
-<div class="card">
-<h3>Innovation Tools</h3>
-<input type="text" placeholder="What tool would you like?">
-<button>Request Tool</button>
-</div>
-</div>
-
-<div id="upgradeSection" style="display:none;">
-<div class="card">
-<h3>Upgrade Membership</h3>
-<input type="text" placeholder="Enter Upgrade Code">
-<button>Activate Upgrade</button>
-</div>
-</div>
-
-<div id="withdrawSection" style="display:none;">
-<div class="card">
-<h3>Withdraw Request</h3>
-<input type="number" placeholder="Enter Amount">
-<input type="text" placeholder="Enter Verification Code">
-<button>Submit Withdrawal</button>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-<script>
-
-function switchPage(pageId){
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-document.getElementById(pageId).classList.add("active");
-}
-
 function login(){
 let user=document.getElementById("username").value;
 let email=document.getElementById("email").value;
@@ -221,40 +96,160 @@ let pass=document.getElementById("password").value;
 
 if(user && email && pass){
 localStorage.setItem("portalUser", JSON.stringify({user,email,pass}));
+window.location.href="dashboard.html";
+}
+}
 
-switchPage("dashboardPage");
-
-document.getElementById("welcomeText").innerText =
-"Congratulations " + user + "! You are one of the selected individuals granted exclusive access to this portal.";
+function loadUser(){
+let data=JSON.parse(localStorage.getItem("portalUser"));
+if(data){
+document.getElementById("welcome").innerText =
+"Congratulations " + data.user + "! You are one of the selected individuals granted access to this exclusive portal.";
 }
 }
 
 function logout(){
 localStorage.removeItem("portalUser");
-switchPage("loginPage");
+window.location.href="login.html";
 }
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secure Login</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
 
-function showSection(section){
-let sections=["overview","buy","program","tools","upgrade","withdraw","programSuccess"];
-sections.forEach(sec=>{
-let el=document.getElementById(sec+"Section") || document.getElementById(sec);
-if(el) el.style.display="none";
-});
-
-if(section==="overview"){
-document.getElementById("overviewSection").style.display="block";
-}
-else{
-document.getElementById(section+"Section").style.display="block";
-}
-}
-
-function submitProgram(){
-document.getElementById("programSection").style.display="none";
-document.getElementById("programSuccess").style.display="block";
-}
-
-</script>
+<div class="container">
+<h2>Secure Access Portal</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body onload="loadUser()">
+
+<div class="dashboard">
+
+<div class="sidebar">
+<h3>BlueNova</h3>
+<a href="dashboard.html">Dashboard</a>
+<a href="buy.html">Buy Code</a>
+<a href="program.html">Program With Us</a>
+<a href="tools.html">Innovation Tools</a>
+<a href="upgrade.html">Upgrade Membership</a>
+<a href="withdraw.html">Withdraw</a>
+<a onclick="logout()">Logout</a>
+</div>
+
+<div class="main">
+
+<h2 id="welcome"></h2>
+
+<div class="card">
+<h3>₦500,000</h3>
+<p>Innovation Credit Balance</p>
+</div>
+
+<div class="card">
+<p>Status: Active</p>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buy Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Enter Access Code</h2>
+<input type="text" placeholder="Enter Code">
+<button>Submit Code</button>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Application Submitted</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="success">
+<h2>Application Submitted Successfully</h2>
+<p>Our team will review your submission.</p>
+<a href="dashboard.html"><button>Return to Dashboard</button></a>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Innovation Tools</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Innovation Tools</h2>
+<input type="text" placeholder="What tool would you like to access?">
+<button>Request Tool</button>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upgrade Membership</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Upgrade Membership</h2>
+<input type="text" placeholder="Enter Upgrade Code">
+<button>Activate Upgrade</button>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Withdraw</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Withdraw Request</h2>
+<input type="number" placeholder="Enter Amount">
+<input type="text" placeholder="Enter Verification Code">
+<button>Submit Withdrawal</button>
+</div>
+
+</body>
+</html>
+
