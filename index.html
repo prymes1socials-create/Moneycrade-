@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaCore Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Finovex Financial Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-
-body{background:#f5f7fa;color:#333;}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+body{background:#f4f7fb;color:#1e293b;}
 .hidden{display:none;}
 
 header{
-background:#0f172a;
+background:#0b3d91;
 color:white;
-padding:20px 50px;
+padding:20px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 header h1{font-size:22px;}
-
-nav a{
-color:white;
-margin-left:20px;
-cursor:pointer;
-text-decoration:none;
-}
+nav a{color:white;margin-left:25px;text-decoration:none;cursor:pointer;}
 
 .hero{
-background:linear-gradient(135deg,#1e293b,#334155);
+background:linear-gradient(135deg,#0b3d91,#1e60d1);
 color:white;
-padding:100px 20px;
+padding:120px 20px;
 text-align:center;
 }
 
-.hero h2{font-size:42px;margin-bottom:15px;}
+.hero h2{font-size:42px;margin-bottom:20px;}
+.hero p{font-size:18px;margin-bottom:30px;}
 
 .hero button{
-padding:12px 25px;
+padding:14px 30px;
 margin:10px;
 border:none;
 border-radius:6px;
@@ -49,48 +41,71 @@ cursor:pointer;
 font-weight:600;
 }
 
-.primary{background:#06b6d4;color:white;}
-.secondary{background:white;color:#0f172a;}
+.primary{background:#ffb703;color:#000;}
+.secondary{background:white;color:#0b3d91;}
+
+.section{padding:80px 60px;text-align:center;}
+.features{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:40px;}
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+width:280px;
+}
+
+.pricing{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:40px;}
+.price-card{
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+width:300px;
+}
+.price-card h3{margin-bottom:15px;}
+.price-card button{
+margin-top:20px;
+padding:12px;
+width:100%;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:#0b3d91;
+color:white;
+}
 
 .form-box{
 max-width:400px;
 margin:60px auto;
 background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 input{
 width:100%;
 padding:12px;
-margin:10px 0;
-border-radius:6px;
+margin:12px 0;
 border:1px solid #ddd;
+border-radius:6px;
 }
 
 button{
-width:100%;
 padding:12px;
 border:none;
 border-radius:6px;
 cursor:pointer;
 }
 
-.dashboard{
-display:flex;
-min-height:100vh;
-}
-
+.dashboard{display:flex;min-height:100vh;}
 .sidebar{
 width:230px;
-background:#0f172a;
+background:#0b3d91;
 color:white;
 padding:30px 20px;
 }
-
 .sidebar h3{margin-bottom:30px;}
-
 .sidebar a{
 display:block;
 margin-bottom:15px;
@@ -98,30 +113,17 @@ color:white;
 cursor:pointer;
 }
 
-.main{
-flex:1;
-padding:40px;
-}
+.main{flex:1;padding:40px;}
+.topbar{display:flex;justify-content:space-between;margin-bottom:30px;}
 
-.topbar{
-display:flex;
-justify-content:space-between;
-margin-bottom:30px;
-}
-
-.card-container{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.card{
+.stats{display:flex;gap:20px;flex-wrap:wrap;}
+.stat-card{
 background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 8px 20px rgba(0,0,0,0.06);
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.06);
 flex:1;
-min-width:200px;
+min-width:220px;
 }
 
 table{
@@ -130,18 +132,11 @@ margin-top:20px;
 border-collapse:collapse;
 background:white;
 }
-
 th,td{
-padding:12px;
+padding:14px;
 border-bottom:1px solid #eee;
 text-align:left;
 }
-
-.success-box{
-text-align:center;
-padding:60px;
-}
-
 </style>
 </head>
 <body>
@@ -149,7 +144,7 @@ padding:60px;
 <!-- HOME -->
 <div id="home">
 <header>
-<h1>NovaCore</h1>
+<h1>Finovex</h1>
 <nav>
 <a onclick="showLogin()">Sign In</a>
 <a onclick="showRegister()">Get Started</a>
@@ -157,22 +152,64 @@ padding:60px;
 </header>
 
 <div class="hero">
-<h2>Next-Generation Digital Innovation Platform</h2>
-<p>Secure. Intelligent. Advanced System Infrastructure.</p>
+<h2>Powerful Financial Infrastructure for Modern Businesses</h2>
+<p>Secure accounts. Real-time insights. Scalable solutions.</p>
 <button class="primary" onclick="showRegister()">Get Started</button>
-<button class="secondary">Contact Sales</button>
+<button class="secondary" onclick="showLogin()">Sign In</button>
+</div>
+
+<div class="section">
+<h2>Platform Features</h2>
+<div class="features">
+<div class="card">
+<h3>Secure Accounts</h3>
+<p>Enterprise-grade account security & monitoring.</p>
+</div>
+<div class="card">
+<h3>Smart Analytics</h3>
+<p>Track performance with intelligent reporting tools.</p>
+</div>
+<div class="card">
+<h3>Scalable Plans</h3>
+<p>Upgrade anytime as your operations grow.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Choose Your Plan</h2>
+<div class="pricing">
+<div class="price-card">
+<h3>Basic</h3>
+<p>₦0/month</p>
+<p>Standard Dashboard Access</p>
+<button>Choose Plan</button>
+</div>
+<div class="price-card">
+<h3>Pro</h3>
+<p>₦15,000/month</p>
+<p>Advanced Reporting + Tools</p>
+<button>Upgrade</button>
+</div>
+<div class="price-card">
+<h3>Elite</h3>
+<p>₦50,000/month</p>
+<p>Full Platform Access</p>
+<button>Upgrade</button>
+</div>
+</div>
 </div>
 </div>
 
 <!-- LOGIN -->
 <div id="login" class="hidden">
 <div class="form-box">
-<h2>Sign In</h2>
+<h2>Login</h2>
 <input type="text" id="loginUser" placeholder="Username">
 <input type="email" id="loginEmail" placeholder="Email">
 <input type="password" id="loginPass" placeholder="Password">
 <button class="primary" onclick="login()">Login</button>
-<p style="margin-top:15px;">No account? <a onclick="showRegister()" style="cursor:pointer;">Sign Up</a></p>
+<p style="margin-top:15px;">No account? <a onclick="showRegister()" style="cursor:pointer;">Register</a></p>
 </div>
 </div>
 
@@ -184,41 +221,40 @@ padding:60px;
 <input type="email" id="regEmail" placeholder="Email">
 <input type="password" id="regPass" placeholder="Password">
 <button class="primary" onclick="register()">Register</button>
-<p style="margin-top:15px;">Already registered? <a onclick="showLogin()" style="cursor:pointer;">Login</a></p>
+<p style="margin-top:15px;">Already have account? <a onclick="showLogin()" style="cursor:pointer;">Login</a></p>
 </div>
 </div>
 
 <!-- DASHBOARD -->
 <div id="dashboard" class="hidden dashboard">
-
 <div class="sidebar">
-<h3>NovaCore</h3>
+<h3>Finovex</h3>
 <a onclick="showSection('overview')">Dashboard</a>
 <a onclick="showSection('transactions')">Transactions</a>
-<a onclick="showSection('tools')">Innovation Tools</a>
-<a onclick="showSection('program')">Program With Us</a>
+<a onclick="showSection('plans')">Plans</a>
+<a onclick="showSection('settings')">Settings</a>
+<a onclick="showSection('support')">Support</a>
 <a onclick="logout()">Logout</a>
 </div>
 
 <div class="main">
-
 <div class="topbar">
 <h2 id="welcomeUser"></h2>
 </div>
 
 <div id="overviewSection">
-<div class="card-container">
-<div class="card">
-<h3>₦ 4,850,000</h3>
-<p>System Value</p>
+<div class="stats">
+<div class="stat-card">
+<h3>₦ 500,000</h3>
+<p>Account Balance</p>
 </div>
-<div class="card">
-<h3>148</h3>
-<p>Active Operations</p>
+<div class="stat-card">
+<h3>34</h3>
+<p>Total Transactions</p>
 </div>
-<div class="card">
-<h3>12</h3>
-<p>Pending Reviews</p>
+<div class="stat-card">
+<h3>Pro Plan</h3>
+<p>Current Subscription</p>
 </div>
 </div>
 </div>
@@ -227,65 +263,53 @@ padding:60px;
 <h2>Transactions</h2>
 <table>
 <tr><th>ID</th><th>Amount</th><th>Status</th></tr>
-<tr><td>#A203</td><td>₦120,000</td><td>Completed</td></tr>
-<tr><td>#B948</td><td>₦50,000</td><td>Processing</td></tr>
+<tr><td>#TX202</td><td>₦120,000</td><td>Completed</td></tr>
+<tr><td>#TX305</td><td>₦80,000</td><td>Pending</td></tr>
 </table>
 </div>
 
-<div id="toolsSection" class="hidden">
-<h2>Innovation Tools</h2>
-<div class="card-container">
-<div class="card">API Integrations</div>
-<div class="card">Secure Modules</div>
-<div class="card">Data Intelligence</div>
-</div>
+<div id="plansSection" class="hidden">
+<h2>Upgrade Plan</h2>
+<p>Select a plan to upgrade your account.</p>
 </div>
 
-<div id="programSection" class="hidden">
-<h2>Program With Us</h2>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="text" placeholder="Project Idea">
-<button class="primary" onclick="submitProgram()">Submit</button>
+<div id="settingsSection" class="hidden">
+<h2>Account Settings</h2>
+<p>Update email, password, and security settings.</p>
 </div>
 
-<div id="submittedSection" class="hidden success-box">
-<h2>Application Submitted Successfully</h2>
-<p>Our team will review your submission.</p>
+<div id="supportSection" class="hidden">
+<h2>Support Center</h2>
+<p>Contact support or browse FAQs.</p>
 </div>
 
 </div>
 </div>
 
 <script>
-
 function showLogin(){home.classList.add("hidden");login.classList.remove("hidden");}
 function showRegister(){home.classList.add("hidden");register.classList.remove("hidden");}
 
 function register(){
-let user=document.getElementById("regUser").value;
-let email=document.getElementById("regEmail").value;
-let pass=document.getElementById("regPass").value;
-
+let user=regUser.value;
+let email=regEmail.value;
+let pass=regPass.value;
 if(user && email && pass){
 localStorage.setItem(email,JSON.stringify({username:user,password:pass}));
-alert("Account Created Successfully");
+alert("Account created successfully");
 showLogin();
 }
 }
 
 function login(){
-let user=document.getElementById("loginUser").value;
-let email=document.getElementById("loginEmail").value;
-let pass=document.getElementById("loginPass").value;
-
+let user=loginUser.value;
+let email=loginEmail.value;
+let pass=loginPass.value;
 let data=JSON.parse(localStorage.getItem(email));
-
-if(data && data.password===pass && data.username===user){
+if(data && data.username===user && data.password===pass){
 login.classList.add("hidden");
 dashboard.classList.remove("hidden");
-document.getElementById("welcomeUser").innerText=
-"Welcome "+user+" — You are one of the most lucky individuals to receive this access. You have only one possibility.";
+document.getElementById("welcomeUser").innerText="Welcome, "+user;
 }else{
 alert("Invalid credentials");
 }
@@ -297,18 +321,11 @@ home.classList.remove("hidden");
 }
 
 function showSection(sec){
-["overview","transactions","tools","program","submitted"].forEach(s=>{
-let el=document.getElementById(s+"Section");
-if(el) el.classList.add("hidden");
+["overview","transactions","plans","settings","support"].forEach(s=>{
+document.getElementById(s+"Section").classList.add("hidden");
 });
 document.getElementById(sec+"Section").classList.remove("hidden");
 }
-
-function submitProgram(){
-programSection.classList.add("hidden");
-submittedSection.classList.remove("hidden");
-}
-
 </script>
 
 </body>
