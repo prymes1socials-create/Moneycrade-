@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayNova - Payment Solutions</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title>NovaCore Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
 
-body{
-background:#f4f6f9;
-color:#333;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+
+body{background:#f5f7fa;color:#333;}
+
+.hidden{display:none;}
 
 header{
-background:#0d1b2a;
+background:#0f172a;
 color:white;
 padding:20px 50px;
 display:flex;
@@ -29,29 +22,23 @@ justify-content:space-between;
 align-items:center;
 }
 
-header h1{
-font-size:22px;
-}
+header h1{font-size:22px;}
 
 nav a{
 color:white;
 margin-left:20px;
-text-decoration:none;
-font-weight:500;
 cursor:pointer;
+text-decoration:none;
 }
 
 .hero{
-background:linear-gradient(135deg,#1b263b,#415a77);
+background:linear-gradient(135deg,#1e293b,#334155);
 color:white;
-padding:80px 50px;
+padding:100px 20px;
 text-align:center;
 }
 
-.hero h2{
-font-size:40px;
-margin-bottom:20px;
-}
+.hero h2{font-size:42px;margin-bottom:15px;}
 
 .hero button{
 padding:12px 25px;
@@ -62,59 +49,28 @@ cursor:pointer;
 font-weight:600;
 }
 
-.primary{
-background:#00b4d8;
-color:white;
-}
+.primary{background:#06b6d4;color:white;}
+.secondary{background:white;color:#0f172a;}
 
-.secondary{
-background:white;
-color:#0d1b2a;
-}
-
-.section{
-padding:60px 50px;
-text-align:center;
-}
-
-.card-container{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin-top:30px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
-width:260px;
-}
-
-.hidden{
-display:none;
-}
-
-.form-container{
+.form-box{
 max-width:400px;
 margin:60px auto;
 background:white;
 padding:30px;
 border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 input{
 width:100%;
 padding:12px;
 margin:10px 0;
-border:1px solid #ddd;
 border-radius:6px;
+border:1px solid #ddd;
 }
 
 button{
+width:100%;
 padding:12px;
 border:none;
 border-radius:6px;
@@ -127,21 +83,18 @@ min-height:100vh;
 }
 
 .sidebar{
-width:220px;
-background:#0d1b2a;
+width:230px;
+background:#0f172a;
 color:white;
 padding:30px 20px;
 }
 
-.sidebar h3{
-margin-bottom:30px;
-}
+.sidebar h3{margin-bottom:30px;}
 
 .sidebar a{
 display:block;
 margin-bottom:15px;
 color:white;
-text-decoration:none;
 cursor:pointer;
 }
 
@@ -150,42 +103,53 @@ flex:1;
 padding:40px;
 }
 
-.stats{
+.topbar{
+display:flex;
+justify-content:space-between;
+margin-bottom:30px;
+}
+
+.card-container{
 display:flex;
 gap:20px;
 flex-wrap:wrap;
 }
 
-.stat-card{
+.card{
 background:white;
 padding:20px;
 border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.06);
 flex:1;
 min-width:200px;
 }
 
-.table{
+table{
 width:100%;
 margin-top:20px;
 border-collapse:collapse;
 background:white;
 }
 
-.table th,.table td{
+th,td{
 padding:12px;
 border-bottom:1px solid #eee;
 text-align:left;
 }
+
+.success-box{
+text-align:center;
+padding:60px;
+}
+
 </style>
 </head>
-
 <body>
 
-<!-- HOMEPAGE -->
-<div id="homePage">
+<!-- HOME -->
+<div id="home">
 <header>
-<h1>PayNova</h1>
+<h1>NovaCore</h1>
 <nav>
 <a onclick="showLogin()">Sign In</a>
 <a onclick="showRegister()">Get Started</a>
@@ -193,74 +157,159 @@ text-align:left;
 </header>
 
 <div class="hero">
-<h2>Payment Solutions for Businesses</h2>
-<p>Secure. Fast. Reliable Payment Infrastructure.</p>
+<h2>Next-Generation Digital Innovation Platform</h2>
+<p>Secure. Intelligent. Advanced System Infrastructure.</p>
 <button class="primary" onclick="showRegister()">Get Started</button>
 <button class="secondary">Contact Sales</button>
-</div>
-
-<div class="section">
-<h2>Key Features</h2>
-<div class="card-container">
-<div class="card">
-<h3>Fast Transactions</h3>
-<p>Process payments instantly worldwide.</p>
-</div>
-<div class="card">
-<h3>Recurring Billing</h3>
-<p>Automate subscriptions and billing cycles.</p>
-</div>
-<div class="card">
-<h3>Developer APIs</h3>
-<p>Powerful integration tools for developers.</p>
-</div>
-</div>
 </div>
 </div>
 
 <!-- LOGIN -->
-<div id="loginPage" class="hidden">
-<div class="form-container">
+<div id="login" class="hidden">
+<div class="form-box">
 <h2>Sign In</h2>
-<input type="email" placeholder="Email Address">
-<input type="password" placeholder="Password">
-<label><input type="checkbox"> Remember Me</label>
-<button class="primary" onclick="showDashboard()">Login</button>
-<p><a onclick="showRegister()">Sign Up</a></p>
+<input type="text" id="loginUser" placeholder="Username">
+<input type="email" id="loginEmail" placeholder="Email">
+<input type="password" id="loginPass" placeholder="Password">
+<button class="primary" onclick="login()">Login</button>
+<p style="margin-top:15px;">No account? <a onclick="showRegister()" style="cursor:pointer;">Sign Up</a></p>
 </div>
 </div>
 
 <!-- REGISTER -->
-<div id="registerPage" class="hidden">
-<div class="form-container">
+<div id="register" class="hidden">
+<div class="form-box">
 <h2>Create Account</h2>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email Address">
-<input type="password" placeholder="Password">
-<input type="password" placeholder="Confirm Password">
-<label><input type="checkbox"> Agree to Terms</label>
-<button class="primary" onclick="showDashboard()">Register</button>
-<p><a onclick="showLogin()">Already have account?</a></p>
+<input type="text" id="regUser" placeholder="Username">
+<input type="email" id="regEmail" placeholder="Email">
+<input type="password" id="regPass" placeholder="Password">
+<button class="primary" onclick="register()">Register</button>
+<p style="margin-top:15px;">Already registered? <a onclick="showLogin()" style="cursor:pointer;">Login</a></p>
 </div>
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboardPage" class="hidden dashboard">
+<div id="dashboard" class="hidden dashboard">
 
 <div class="sidebar">
-<h3>PayNova</h3>
-<a onclick="showSection('dashboard')">Dashboard</a>
+<h3>NovaCore</h3>
+<a onclick="showSection('overview')">Dashboard</a>
 <a onclick="showSection('transactions')">Transactions</a>
-<a onclick="showSection('payments')">Manage Payments</a>
-<a onclick="showSection('tools')">Payment Tools</a>
-<a onclick="showSection('settings')">Settings</a>
-<a onclick="showSection('support')">Support</a>
+<a onclick="showSection('tools')">Innovation Tools</a>
+<a onclick="showSection('program')">Program With Us</a>
 <a onclick="logout()">Logout</a>
 </div>
 
 <div class="main">
 
-<div id="dashboardSection">
-<h2>Dashboard Overview</h2>
-<div class="stats">
-<div class="
+<div class="topbar">
+<h2 id="welcomeUser"></h2>
+</div>
+
+<div id="overviewSection">
+<div class="card-container">
+<div class="card">
+<h3>₦ 4,850,000</h3>
+<p>System Value</p>
+</div>
+<div class="card">
+<h3>148</h3>
+<p>Active Operations</p>
+</div>
+<div class="card">
+<h3>12</h3>
+<p>Pending Reviews</p>
+</div>
+</div>
+</div>
+
+<div id="transactionsSection" class="hidden">
+<h2>Transactions</h2>
+<table>
+<tr><th>ID</th><th>Amount</th><th>Status</th></tr>
+<tr><td>#A203</td><td>₦120,000</td><td>Completed</td></tr>
+<tr><td>#B948</td><td>₦50,000</td><td>Processing</td></tr>
+</table>
+</div>
+
+<div id="toolsSection" class="hidden">
+<h2>Innovation Tools</h2>
+<div class="card-container">
+<div class="card">API Integrations</div>
+<div class="card">Secure Modules</div>
+<div class="card">Data Intelligence</div>
+</div>
+</div>
+
+<div id="programSection" class="hidden">
+<h2>Program With Us</h2>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="text" placeholder="Project Idea">
+<button class="primary" onclick="submitProgram()">Submit</button>
+</div>
+
+<div id="submittedSection" class="hidden success-box">
+<h2>Application Submitted Successfully</h2>
+<p>Our team will review your submission.</p>
+</div>
+
+</div>
+</div>
+
+<script>
+
+function showLogin(){home.classList.add("hidden");login.classList.remove("hidden");}
+function showRegister(){home.classList.add("hidden");register.classList.remove("hidden");}
+
+function register(){
+let user=document.getElementById("regUser").value;
+let email=document.getElementById("regEmail").value;
+let pass=document.getElementById("regPass").value;
+
+if(user && email && pass){
+localStorage.setItem(email,JSON.stringify({username:user,password:pass}));
+alert("Account Created Successfully");
+showLogin();
+}
+}
+
+function login(){
+let user=document.getElementById("loginUser").value;
+let email=document.getElementById("loginEmail").value;
+let pass=document.getElementById("loginPass").value;
+
+let data=JSON.parse(localStorage.getItem(email));
+
+if(data && data.password===pass && data.username===user){
+login.classList.add("hidden");
+dashboard.classList.remove("hidden");
+document.getElementById("welcomeUser").innerText=
+"Welcome "+user+" — You are one of the most lucky individuals to receive this access. You have only one possibility.";
+}else{
+alert("Invalid credentials");
+}
+}
+
+function logout(){
+dashboard.classList.add("hidden");
+home.classList.remove("hidden");
+}
+
+function showSection(sec){
+["overview","transactions","tools","program","submitted"].forEach(s=>{
+let el=document.getElementById(s+"Section");
+if(el) el.classList.add("hidden");
+});
+document.getElementById(sec+"Section").classList.remove("hidden");
+}
+
+function submitProgram(){
+programSection.classList.add("hidden");
+submittedSection.classList.remove("hidden");
+}
+
+</script>
+
+</body>
+  </html>
