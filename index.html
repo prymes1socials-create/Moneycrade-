@@ -3,50 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finova Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>BlueNova Financial Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
-
-body{background:#f1f5f9;color:#0f172a;}
-
+body{background:#f4f6f9;color:#1e293b;}
 .hidden{display:none;}
 
-.auth-container{
-height:100vh;
+header{
+background:#0f172a;
+color:white;
+padding:20px 40px;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-background:linear-gradient(135deg,#0f172a,#1e293b);
 }
 
-.auth-box{
+.form-box{
+max-width:420px;
+margin:100px auto;
 background:white;
-padding:40px;
-width:350px;
-border-radius:12px;
-box-shadow:0 20px 40px rgba(0,0,0,0.2);
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-.auth-box h2{margin-bottom:20px;text-align:center;}
-
-.auth-box input{
+input{
 width:100%;
 padding:12px;
 margin:10px 0;
+border:1px solid #ddd;
 border-radius:6px;
-border:1px solid #cbd5e1;
 }
 
-.auth-box button{
+button{
 width:100%;
 padding:12px;
-background:#0f172a;
-color:white;
 border:none;
 border-radius:6px;
 cursor:pointer;
-margin-top:10px;
+font-weight:600;
+background:#2563eb;
+color:white;
 }
 
 .dashboard{
@@ -65,7 +63,7 @@ padding:30px 20px;
 
 .sidebar a{
 display:block;
-margin-bottom:18px;
+margin-bottom:15px;
 cursor:pointer;
 }
 
@@ -81,7 +79,7 @@ align-items:center;
 margin-bottom:30px;
 }
 
-.card-grid{
+.card-container{
 display:flex;
 gap:20px;
 flex-wrap:wrap;
@@ -89,47 +87,25 @@ flex-wrap:wrap;
 
 .card{
 background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
+padding:20px;
+border-radius:10px;
+box-shadow:0 8px 20px rgba(0,0,0,0.06);
 flex:1;
-min-width:220px;
+min-width:200px;
 }
 
-.page-box{
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
-max-width:500px;
-}
-
-.page-box input{
-width:100%;
-padding:12px;
-margin-top:15px;
-border-radius:6px;
-border:1px solid #cbd5e1;
-}
-
-.page-box button{
-margin-top:15px;
-padding:12px;
-width:100%;
-background:#0f172a;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+.success{
+text-align:center;
+padding:60px;
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH -->
-<div id="auth" class="auth-container">
-<div class="auth-box">
-<h2>Member Access</h2>
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+<div class="form-box">
+<h2>Secure Access Portal</h2>
 <input type="text" id="username" placeholder="Username">
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
@@ -138,15 +114,16 @@ cursor:pointer;
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboard" class="hidden dashboard">
+<div id="dashboardPage" class="hidden dashboard">
 
 <div class="sidebar">
-<h3>Finova Systems</h3>
-<a onclick="showPage('homePage')">Dashboard</a>
-<a onclick="showPage('buyPage')">Buy Code</a>
-<a onclick="showPage('programPage')">Program With Us</a>
-<a onclick="showPage('toolsPage')">Innovation Tools</a>
-<a onclick="showPage('upgradePage')">Upgrade Membership</a>
+<h3>BlueNova</h3>
+<a onclick="showSection('overview')">Dashboard</a>
+<a onclick="showSection('buy')">Buy Code</a>
+<a onclick="showSection('program')">Program With Us</a>
+<a onclick="showSection('tools')">Innovation Tools</a>
+<a onclick="showSection('upgrade')">Upgrade Membership</a>
+<a onclick="showSection('withdraw')">Withdraw</a>
 <a onclick="logout()">Logout</a>
 </div>
 
@@ -156,55 +133,65 @@ cursor:pointer;
 <h2 id="welcomeText"></h2>
 </div>
 
-<div id="homePage">
-<div class="card-grid">
+<!-- OVERVIEW -->
+<div id="overviewSection">
+<div class="card-container">
 <div class="card">
 <h3>₦500,000</h3>
-<p>Welcome Credit Allocation</p>
-</div>
-<div class="card">
-<h3>Premium Access</h3>
-<p>Account Tier</p>
+<p>Innovation Grant Credit</p>
 </div>
 <div class="card">
 <h3>Active</h3>
-<p>System Status</p>
+<p>Account Status</p>
+</div>
+<div class="card">
+<h3>Verified Access</h3>
+<p>Membership Tier</p>
 </div>
 </div>
 </div>
 
-<div id="buyPage" class="hidden">
-<div class="page-box">
-<h3>Enter Access Code</h3>
+<!-- BUY CODE -->
+<div id="buySection" class="hidden">
+<h2>Enter Access Code</h2>
 <input type="text" placeholder="Enter Code">
-<button>Submit</button>
-</div>
+<button>Submit Code</button>
 </div>
 
-<div id="programPage" class="hidden">
-<div class="page-box">
-<h3>Program With Us</h3>
+<!-- PROGRAM WITH US -->
+<div id="programSection" class="hidden">
+<h2>Program With Us</h2>
 <input type="text" placeholder="Full Name">
-<input type="text" placeholder="Project Title">
-<input type="text" placeholder="Skill Category">
-<button>Submit Application</button>
-</div>
-</div>
-
-<div id="toolsPage" class="hidden">
-<div class="page-box">
-<h3>Select Innovation Tool</h3>
-<input type="text" placeholder="What are you looking for?">
-<button>Proceed</button>
-</div>
+<input type="email" placeholder="Email">
+<input type="text" placeholder="Project Idea">
+<button onclick="submitProgram()">Submit Application</button>
 </div>
 
-<div id="upgradePage" class="hidden">
-<div class="page-box">
-<h3>Upgrade Membership</h3>
+<div id="programSuccess" class="hidden success">
+<h2>Application Submitted</h2>
+<p>Our review team will process your submission.</p>
+</div>
+
+<!-- INNOVATION TOOLS -->
+<div id="toolsSection" class="hidden">
+<h2>Innovation Tools</h2>
+<input type="text" placeholder="What tool do you want to access?">
+<button>Request Tool Access</button>
+</div>
+
+<!-- UPGRADE -->
+<div id="upgradeSection" class="hidden">
+<h2>Upgrade Membership</h2>
 <input type="text" placeholder="Enter Upgrade Code">
-<button>Activate</button>
+<button>Activate Upgrade</button>
 </div>
+
+<!-- WITHDRAW -->
+<div id="withdrawSection" class="hidden">
+<h2>Withdraw Request</h2>
+<input type="number" placeholder="Enter Amount">
+<input type="text" placeholder="Enter Verification Code">
+<button>Submit Withdrawal</button>
 </div>
 
 </div>
@@ -217,25 +204,30 @@ let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 if(user && email && pass){
-localStorage.setItem("account",JSON.stringify({user,email,pass}));
-document.getElementById("auth").classList.add("hidden");
-document.getElementById("dashboard").classList.remove("hidden");
+localStorage.setItem("userData",JSON.stringify({user,email,pass}));
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("dashboardPage").classList.remove("hidden");
 
-document.getElementById("welcomeText").innerText=
-"Congratulations "+user+"! You are one of the selected individuals granted access to this private system.";
+document.getElementById("welcomeText").innerText =
+"Congratulations "+user+"! You are one of the selected individuals granted access to this exclusive portal.";
 }
 }
 
 function logout(){
-dashboard.classList.add("hidden");
-auth.classList.remove("hidden");
+localStorage.removeItem("userData");
+location.reload();
 }
 
-function showPage(page){
-["homePage","buyPage","programPage","toolsPage","upgradePage"].forEach(id=>{
-document.getElementById(id).classList.add("hidden");
+function showSection(section){
+["overview","buy","program","tools","upgrade","withdraw"].forEach(sec=>{
+document.getElementById(sec+"Section").classList.add("hidden");
 });
-document.getElementById(page).classList.remove("hidden");
+document.getElementById(section+"Section").classList.remove("hidden");
+}
+
+function submitProgram(){
+document.getElementById("programSection").classList.add("hidden");
+document.getElementById("programSuccess").classList.remove("hidden");
 }
 </script>
 
