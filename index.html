@@ -1,224 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private Access Portal</title>
+<title>PayNova - Payment Solutions</title>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-    color:white;
+background:#f4f6f9;
+color:#333;
 }
-.container{
-    max-width:400px;
-    margin:60px auto;
-    background:#1e293b;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
+
+header{
+background:#0d1b2a;
+color:white;
+padding:20px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
-h2{text-align:center;margin-bottom:20px;}
-input,button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border-radius:6px;
-    border:none;
+
+header h1{
+font-size:22px;
 }
-input{background:#0f172a;color:white;}
-button{
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:500;
+cursor:pointer;
 }
-button:hover{background:#1d4ed8;}
-.link{text-align:center;margin-top:10px;cursor:pointer;color:#60a5fa;}
-.hidden{display:none;}
-.dashboard{
-    padding:20px;
+
+.hero{
+background:linear-gradient(135deg,#1b263b,#415a77);
+color:white;
+padding:80px 50px;
+text-align:center;
 }
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111827;
-    padding:15px;
+
+.hero h2{
+font-size:40px;
+margin-bottom:20px;
 }
-.cards{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:20px;
+
+.hero button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
 }
+
+.primary{
+background:#00b4d8;
+color:white;
+}
+
+.secondary{
+background:white;
+color:#0d1b2a;
+}
+
+.section{
+padding:60px 50px;
+text-align:center;
+}
+
+.card-container{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
 .card{
-    background:#1f2937;
-    padding:20px;
-    border-radius:10px;
-    cursor:pointer;
-    text-align:center;
-    transition:0.3s;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+width:260px;
 }
-.card:hover{
-    background:#374151;
+
+.hidden{
+display:none;
 }
-.page{
-    padding:20px;
+
+.form-container{
+max-width:400px;
+margin:60px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
-.success{
-    text-align:center;
-    padding:40px;
-    font-size:18px;
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.dashboard{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+width:220px;
+background:#0d1b2a;
+color:white;
+padding:30px 20px;
+}
+
+.sidebar h3{
+margin-bottom:30px;
+}
+
+.sidebar a{
+display:block;
+margin-bottom:15px;
+color:white;
+text-decoration:none;
+cursor:pointer;
+}
+
+.main{
+flex:1;
+padding:40px;
+}
+
+.stats{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.stat-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+flex:1;
+min-width:200px;
+}
+
+.table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+background:white;
+}
+
+.table th,.table td{
+padding:12px;
+border-bottom:1px solid #eee;
+text-align:left;
 }
 </style>
 </head>
+
 <body>
 
-<div id="authSection" class="container">
-    <h2 id="authTitle">Login</h2>
-    <input type="text" id="username" placeholder="Username (for register)">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="handleAuth()">Continue</button>
-    <div class="link" onclick="toggleMode()">Switch to Register / Login</div>
+<!-- HOMEPAGE -->
+<div id="homePage">
+<header>
+<h1>PayNova</h1>
+<nav>
+<a onclick="showLogin()">Sign In</a>
+<a onclick="showRegister()">Get Started</a>
+</nav>
+</header>
+
+<div class="hero">
+<h2>Payment Solutions for Businesses</h2>
+<p>Secure. Fast. Reliable Payment Infrastructure.</p>
+<button class="primary" onclick="showRegister()">Get Started</button>
+<button class="secondary">Contact Sales</button>
 </div>
 
-<div id="dashboardSection" class="hidden">
-    <div class="topbar">
-        <div>Welcome, <span id="displayName"></span></div>
-        <button onclick="logout()">Logout</button>
-    </div>
-    <div class="dashboard">
-        <p id="welcomeMessage"></p>
-        <div class="cards">
-            <div class="card" onclick="showPage('buyPage')">Buy Random Code</div>
-            <div class="card" onclick="showPage('amountPage')">Accepting Amount</div>
-            <div class="card" onclick="showPage('programPage')">Program With Us</div>
-            <div class="card" onclick="showPage('withdrawPage')">Withdraw</div>
-        </div>
-    </div>
+<div class="section">
+<h2>Key Features</h2>
+<div class="card-container">
+<div class="card">
+<h3>Fast Transactions</h3>
+<p>Process payments instantly worldwide.</p>
+</div>
+<div class="card">
+<h3>Recurring Billing</h3>
+<p>Automate subscriptions and billing cycles.</p>
+</div>
+<div class="card">
+<h3>Developer APIs</h3>
+<p>Powerful integration tools for developers.</p>
+</div>
+</div>
+</div>
 </div>
 
-<div id="buyPage" class="page hidden">
-    <h2>Buy Random Code</h2>
-    <input type="number" placeholder="Enter amount">
-    <button onclick="alert('Processing...')">Proceed</button>
-    <button onclick="goBack()">Back</button>
+<!-- LOGIN -->
+<div id="loginPage" class="hidden">
+<div class="form-container">
+<h2>Sign In</h2>
+<input type="email" placeholder="Email Address">
+<input type="password" placeholder="Password">
+<label><input type="checkbox"> Remember Me</label>
+<button class="primary" onclick="showDashboard()">Login</button>
+<p><a onclick="showRegister()">Sign Up</a></p>
+</div>
 </div>
 
-<div id="amountPage" class="page hidden">
-    <h2>Accepting Amount</h2>
-    <input type="number" placeholder="Enter amount">
-    <button onclick="alert('Submitted')">Submit</button>
-    <button onclick="goBack()">Back</button>
+<!-- REGISTER -->
+<div id="registerPage" class="hidden">
+<div class="form-container">
+<h2>Create Account</h2>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email Address">
+<input type="password" placeholder="Password">
+<input type="password" placeholder="Confirm Password">
+<label><input type="checkbox"> Agree to Terms</label>
+<button class="primary" onclick="showDashboard()">Register</button>
+<p><a onclick="showLogin()">Already have account?</a></p>
+</div>
 </div>
 
-<div id="programPage" class="page hidden">
-    <h2>Program With Us</h2>
-    <input type="text" placeholder="Full Name">
-    <input type="text" placeholder="Qualification">
-    <input type="text" placeholder="Experience">
-    <button onclick="showPage('submittedPage')">Submit Application</button>
-    <button onclick="goBack()">Back</button>
+<!-- DASHBOARD -->
+<div id="dashboardPage" class="hidden dashboard">
+
+<div class="sidebar">
+<h3>PayNova</h3>
+<a onclick="showSection('dashboard')">Dashboard</a>
+<a onclick="showSection('transactions')">Transactions</a>
+<a onclick="showSection('payments')">Manage Payments</a>
+<a onclick="showSection('tools')">Payment Tools</a>
+<a onclick="showSection('settings')">Settings</a>
+<a onclick="showSection('support')">Support</a>
+<a onclick="logout()">Logout</a>
 </div>
 
-<div id="withdrawPage" class="page hidden">
-    <h2>Withdraw</h2>
-    <input type="number" placeholder="Enter amount">
-    <button onclick="alert('Verification Required')">Proceed</button>
-    <button onclick="goBack()">Back</button>
-</div>
+<div class="main">
 
-<div id="submittedPage" class="success hidden">
-    <h2>Application Submitted Successfully</h2>
-    <button onclick="goBack()">Return to Dashboard</button>
-</div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "PASTE_YOURS",
-  authDomain: "PASTE_YOURS",
-  projectId: "PASTE_YOURS",
-  storageBucket: "PASTE_YOURS",
-  messagingSenderId: "PASTE_YOURS",
-  appId: "PASTE_YOURS"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let isLogin = true;
-
-window.toggleMode = function(){
-    isLogin = !isLogin;
-    document.getElementById("authTitle").innerText = isLogin ? "Login" : "Register";
-    document.getElementById("username").style.display = isLogin ? "none" : "block";
-}
-
-window.handleAuth = async function(){
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const username = document.getElementById("username").value;
-
-    if(isLogin){
-        await signInWithEmailAndPassword(auth,email,password);
-    } else {
-        const userCred = await createUserWithEmailAndPassword(auth,email,password);
-        await setDoc(doc(db,"users",userCred.user.uid),{
-            username:username,
-            email:email
-        });
-    }
-}
-
-onAuthStateChanged(auth, async(user)=>{
-    if(user){
-        document.getElementById("authSection").classList.add("hidden");
-        document.getElementById("dashboardSection").classList.remove("hidden");
-
-        const docSnap = await getDoc(doc(db,"users",user.uid));
-        if(docSnap.exists()){
-            const name = docSnap.data().username;
-            document.getElementById("displayName").innerText = name;
-            document.getElementById("welcomeMessage").innerText =
-            "Congratulations! You are among the most fortunate individuals to receive this private access link. You now have one exclusive opportunity.";
-        }
-    } else {
-        document.getElementById("authSection").classList.remove("hidden");
-        document.getElementById("dashboardSection").classList.add("hidden");
-    }
-});
-
-window.logout = function(){
-    signOut(auth);
-}
-
-window.showPage = function(id){
-    document.getElementById("dashboardSection").classList.add("hidden");
-    document.getElementById(id).classList.remove("hidden");
-}
-
-window.goBack = function(){
-    document.querySelectorAll(".page,.success").forEach(p=>p.classList.add("hidden"));
-    document.getElementById("dashboardSection").classList.remove("hidden");
-}
-
-</script>
-
-</body>
-      </html>
+<div id="dashboardSection">
+<h2>Dashboard Overview</h2>
+<div class="stats">
+<div class="
