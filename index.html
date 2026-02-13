@@ -3,243 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MONEY CRADE</title>
+<title>Private Access Portal</title>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
-}
-
 body{
-background:#0f172a;
-color:white;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
 }
-
-.hidden{
-display:none;
-}
-
 .container{
-padding:20px;
-max-width:500px;
-margin:auto;
+    max-width:400px;
+    margin:60px auto;
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
-
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:12px;
-margin-top:20px;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
+h2{text-align:center;margin-bottom:20px;}
+input,button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:6px;
+    border:none;
 }
-
-input{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:8px;
-background:#334155;
-color:white;
-}
-
+input{background:#0f172a;color:white;}
 button{
-width:100%;
-padding:12px;
-margin-top:15px;
-border:none;
-border-radius:8px;
-background:#3b82f6;
-color:white;
-font-weight:bold;
-cursor:pointer;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
 }
-
-button:hover{
-background:#2563eb;
+button:hover{background:#1d4ed8;}
+.link{text-align:center;margin-top:10px;cursor:pointer;color:#60a5fa;}
+.hidden{display:none;}
+.dashboard{
+    padding:20px;
 }
-
-.nav{
-display:flex;
-justify-content:space-between;
-background:#1e293b;
-padding:15px;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111827;
+    padding:15px;
 }
-
-.nav button{
-width:auto;
-padding:8px 12px;
-margin:0 5px;
-background:#334155;
+.cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
 }
-
-.balance{
-font-size:28px;
-font-weight:bold;
-margin-top:10px;
-color:#22c55e;
+.card{
+    background:#1f2937;
+    padding:20px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+    transition:0.3s;
 }
-
-.demo{
-margin-top:10px;
-color:#f87171;
-font-size:14px;
+.card:hover{
+    background:#374151;
 }
-
-.header{
-font-size:22px;
-font-weight:bold;
+.page{
+    padding:20px;
 }
-
+.success{
+    text-align:center;
+    padding:40px;
+    font-size:18px;
+}
 </style>
 </head>
-
 <body>
 
-<div id="authPage" class="container">
-<h1 style="text-align:center;">MONEY CRADE</h1>
-<div class="card">
-<h3>Login / Register</h3>
-<input type="email" id="email" placeholder="Enter Email">
-<input type="text" id="username" placeholder="Enter Username">
-<input type="password" id="password" placeholder="Enter Password">
-<button onclick="register()">Register</button>
-<button onclick="login()">Login</button>
-<p class="demo">Demo only. No real accounts.</p>
-</div>
+<div id="authSection" class="container">
+    <h2 id="authTitle">Login</h2>
+    <input type="text" id="username" placeholder="Username (for register)">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="handleAuth()">Continue</button>
+    <div class="link" onclick="toggleMode()">Switch to Register / Login</div>
 </div>
 
-<div id="dashboardPage" class="hidden">
-
-<div class="nav">
-<div id="welcomeUser"></div>
-<button onclick="logout()">Logout</button>
+<div id="dashboardSection" class="hidden">
+    <div class="topbar">
+        <div>Welcome, <span id="displayName"></span></div>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <div class="dashboard">
+        <p id="welcomeMessage"></p>
+        <div class="cards">
+            <div class="card" onclick="showPage('buyPage')">Buy Random Code</div>
+            <div class="card" onclick="showPage('amountPage')">Accepting Amount</div>
+            <div class="card" onclick="showPage('programPage')">Program With Us</div>
+            <div class="card" onclick="showPage('withdrawPage')">Withdraw</div>
+        </div>
+    </div>
 </div>
 
-<div class="container">
-
-<div id="dashboardSection">
-<div class="card">
-<div class="header">Dashboard</div>
-<div class="balance">₦500,000</div>
-<p class="demo">Demo balance. Not real money.</p>
+<div id="buyPage" class="page hidden">
+    <h2>Buy Random Code</h2>
+    <input type="number" placeholder="Enter amount">
+    <button onclick="alert('Processing...')">Proceed</button>
+    <button onclick="goBack()">Back</button>
 </div>
 
-<div class="card">
-<button onclick="showSection('buySection')">Buy Code</button>
-<button onclick="showSection('programSection')">Program With Us</button>
-<button onclick="showSection('withdrawSection')">Withdraw</button>
-</div>
-</div>
-
-<div id="buySection" class="hidden">
-<div class="card">
-<h3>Buy Code</h3>
-<p>Select an option below.</p>
-<button onclick="showPayment()">Random Code</button>
-<button onclick="showPayment()">VIP Code</button>
-<button onclick="showPayment()">VVIP Code</button>
-<button onclick="back()">Back</button>
-<p class="demo">Demo only. No real payment required.</p>
-</div>
+<div id="amountPage" class="page hidden">
+    <h2>Accepting Amount</h2>
+    <input type="number" placeholder="Enter amount">
+    <button onclick="alert('Submitted')">Submit</button>
+    <button onclick="goBack()">Back</button>
 </div>
 
-<div id="programSection" class="hidden">
-<div class="card">
-<h3>Program With Us</h3>
-<input placeholder="Full Name">
-<input placeholder="Phone Number">
-<input placeholder="Experience Level">
-<button onclick="submitProgram()">Submit</button>
-<button onclick="back()">Back</button>
-<p id="programMsg" class="demo"></p>
-</div>
+<div id="programPage" class="page hidden">
+    <h2>Program With Us</h2>
+    <input type="text" placeholder="Full Name">
+    <input type="text" placeholder="Qualification">
+    <input type="text" placeholder="Experience">
+    <button onclick="showPage('submittedPage')">Submit Application</button>
+    <button onclick="goBack()">Back</button>
 </div>
 
-<div id="withdrawSection" class="hidden">
-<div class="card">
-<h3>Withdraw Funds</h3>
-<p>You must verify your account before withdrawal.</p>
-<input placeholder="Enter Verification Code">
-<button onclick="withdrawNotice()">Proceed</button>
-<button onclick="back()">Back</button>
-<p id="withdrawMsg" class="demo"></p>
-</div>
+<div id="withdrawPage" class="page hidden">
+    <h2>Withdraw</h2>
+    <input type="number" placeholder="Enter amount">
+    <button onclick="alert('Verification Required')">Proceed</button>
+    <button onclick="goBack()">Back</button>
 </div>
 
+<div id="submittedPage" class="success hidden">
+    <h2>Application Submitted Successfully</h2>
+    <button onclick="goBack()">Return to Dashboard</button>
 </div>
-</div>
 
-<script>
+<script type="module">
 
-function register(){
-let email=document.getElementById("email").value;
-let username=document.getElementById("username").value;
-let password=document.getElementById("password").value;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-if(email && username && password){
-localStorage.setItem("userEmail",email);
-localStorage.setItem("userName",username);
-localStorage.setItem("userPass",password);
-alert("Registered successfully (Demo)");
-}
-else{
-alert("Please fill all fields");
-}
+const firebaseConfig = {
+  apiKey: "PASTE_YOURS",
+  authDomain: "PASTE_YOURS",
+  projectId: "PASTE_YOURS",
+  storageBucket: "PASTE_YOURS",
+  messagingSenderId: "PASTE_YOURS",
+  appId: "PASTE_YOURS"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let isLogin = true;
+
+window.toggleMode = function(){
+    isLogin = !isLogin;
+    document.getElementById("authTitle").innerText = isLogin ? "Login" : "Register";
+    document.getElementById("username").style.display = isLogin ? "none" : "block";
 }
 
-function login(){
-let email=document.getElementById("email").value;
-let username=document.getElementById("username").value;
-let password=document.getElementById("password").value;
+window.handleAuth = async function(){
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
 
-if(email===localStorage.getItem("userEmail") &&
-username===localStorage.getItem("userName") &&
-password===localStorage.getItem("userPass")){
-document.getElementById("authPage").classList.add("hidden");
-document.getElementById("dashboardPage").classList.remove("hidden");
-document.getElementById("welcomeUser").innerText="Welcome, "+username;
-}
-else{
-alert("Invalid login details");
-}
-}
-
-function logout(){
-location.reload();
+    if(isLogin){
+        await signInWithEmailAndPassword(auth,email,password);
+    } else {
+        const userCred = await createUserWithEmailAndPassword(auth,email,password);
+        await setDoc(doc(db,"users",userCred.user.uid),{
+            username:username,
+            email:email
+        });
+    }
 }
 
-function showSection(section){
-document.getElementById("dashboardSection").classList.add("hidden");
-document.getElementById("buySection").classList.add("hidden");
-document.getElementById("programSection").classList.add("hidden");
-document.getElementById("withdrawSection").classList.add("hidden");
-document.getElementById(section).classList.remove("hidden");
+onAuthStateChanged(auth, async(user)=>{
+    if(user){
+        document.getElementById("authSection").classList.add("hidden");
+        document.getElementById("dashboardSection").classList.remove("hidden");
+
+        const docSnap = await getDoc(doc(db,"users",user.uid));
+        if(docSnap.exists()){
+            const name = docSnap.data().username;
+            document.getElementById("displayName").innerText = name;
+            document.getElementById("welcomeMessage").innerText =
+            "Congratulations! You are among the most fortunate individuals to receive this private access link. You now have one exclusive opportunity.";
+        }
+    } else {
+        document.getElementById("authSection").classList.remove("hidden");
+        document.getElementById("dashboardSection").classList.add("hidden");
+    }
+});
+
+window.logout = function(){
+    signOut(auth);
 }
 
-function back(){
-document.getElementById("buySection").classList.add("hidden");
-document.getElementById("programSection").classList.add("hidden");
-document.getElementById("withdrawSection").classList.add("hidden");
-document.getElementById("dashboardSection").classList.remove("hidden");
+window.showPage = function(id){
+    document.getElementById("dashboardSection").classList.add("hidden");
+    document.getElementById(id).classList.remove("hidden");
 }
 
-function showPayment(){
-alert("Demo only. No real payment required.");
-}
-
-function submitProgram(){
-document.getElementById("programMsg").innerText="Application submitted (Demo Only).";
-}
-
-function withdrawNotice(){
-document.getElementById("withdrawMsg").innerText="Withdrawal locked. Demo verification required.";
+window.goBack = function(){
+    document.querySelectorAll(".page,.success").forEach(p=>p.classList.add("hidden"));
+    document.getElementById("dashboardSection").classList.remove("hidden");
 }
 
 </script>
 
 </body>
-</html>
+      </html>
