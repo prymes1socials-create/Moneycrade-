@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlueNova Dashboard</title>
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
 </head>
+
 <body onload="loadUser()">
 
 <div class="dashboard">
 
 <div class="sidebar">
-<h3>BlueNova</h3>
-<a href="dashboard.html">Dashboard</a>
-<a href="buy.html">Buy Code</a>
-<a href="program.html">Program With Us</a>
-<a href="tools.html">Innovation Tools</a>
-<a href="upgrade.html">Upgrade Membership</a>
-<a href="withdraw.html">Withdraw</a>
+<h2 class="brand">BLUENOVA</h2>
+
+<a href="#">Dashboard</a>
+<a href="#">Buy Code</a>
+<a href="#">Program With Us</a>
+<a href="#">Innovation Tools</a>
+<a href="#">Upgrade</a>
+<a href="#">Withdraw</a>
 <a onclick="logout()">Logout</a>
 </div>
 
 <div class="main">
-<h2 id="welcomeText"></h2>
+
+<div class="topbar">
+<h1 id="welcomeText"></h1>
+<div class="profile-circle"></div>
+</div>
+
+<div class="cards">
 
 <div class="card">
 <h3>₦500,000</h3>
-<p>Innovation Credit Balance</p>
+<p>Innovation Credit</p>
 </div>
 
 <div class="card">
-<p>Status: Active</p>
+<h3>ACTIVE</h3>
+<p>Membership Status</p>
 </div>
+
 </div>
 
 </div>
 
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
